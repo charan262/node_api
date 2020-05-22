@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-var path = require('path');
+import path from 'path';
 const route = path.join(__dirname, './src/routes')
 
 const greet = require(`${route}/greeting.js`);
