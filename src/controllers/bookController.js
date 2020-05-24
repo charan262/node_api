@@ -1,19 +1,17 @@
-import Book from '../model/book.js';
+import Book from '../model/book';
+
 const index = (req, res) => {
     res.send('NOT IMPLEMENTED: Site Home Page');
 };
 
 // Display list of all books.
 const book_list = (req, res) =>  {
-    res.send('booklist')
-    // Book.find({}, 'title author')
-    // .populate('author')
-    // .exec(function (err, list_books) {
-    //   if (err) { return next(err); }
-    //   //Successful, so render
-    //   res.send('booklist', list_books)
-    // //   res.render('book_list', { title: 'Book List', book_list: list_books });
-    // });
+    Book.find({}, 'title author')
+    .populate('author')
+    .exec(function (err, list_books) {
+      if (err) { return next(err); }
+      res.status(200).send(list_books);
+    });
 };
 
 // Display detail page for a specific book.

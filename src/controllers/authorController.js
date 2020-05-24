@@ -2,7 +2,14 @@ import Author from '../model/author';
 
 // Display list of all Authors.
 const author_list = (req,res) =>  {
-    res.send('NOT IMPLEMENTED: Author list');
+    Author.find()
+          .populate('author')
+          .exec((err, list_authors) => {
+            if (err) { return next(err); }
+            console.log(req.headers)
+            res.type('json')
+            res.status(200).send(list_authors);
+          })
 };
 
 // Display detail page for a specific Author.
